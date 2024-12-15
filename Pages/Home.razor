@@ -1,0 +1,27 @@
+﻿@page "/"
+
+@inject IJSRuntime ijsruntime;
+@inject IAlertService alertService;
+
+<PageTitle>Home</PageTitle>
+
+<h1>Hello, @test!</h1>
+
+Welcome to your new app.
+
+<script>
+	function jsFuncion(){
+	alert("Hola Mundo")
+	}
+</script>
+
+@code{
+	string test = "Alexandro";
+
+	protected override async Task OnAfterRenderAsync(bool firstRender){
+		if(firstRender){
+			// await ijsruntime.InvokeVoidAsync("alert", "Prueba");
+			await alertService.CallJsAlertFunction();
+		}
+	}
+}
